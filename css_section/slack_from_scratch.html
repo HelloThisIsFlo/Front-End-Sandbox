@@ -16,7 +16,7 @@
         }
 
         * {
-            border: 1px red solid;
+            /* border: 1px red solid; */
         }
 
         hr {
@@ -41,10 +41,7 @@
         .header-with-img {
             width: auto;
             height: 210px;
-            /* background-image: url(profile-placeholder.svg); */
-            /* background-image: url(profile.jpeg); */
-            background-image: linear-gradient(to top, #00000060, #00000000 40%), url(profile.jpeg);
-            /* background-image: linear-gradient(to top, #00000060, #00000000 40%), url(profile-placeholder.svg); */
+            background-image: linear-gradient(to top, #00000060, #00000000 40%), url("https://www.gravatar.com/avatar/e4546dde398d256327e5ebead604f268?s=500");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
@@ -64,12 +61,30 @@
 
         .status {
             display: inline-block;
-            background-color: #95CB95;
             width: 10px;
             height: 10px;
             margin-left: 7px;
             border-radius: 50%;
+            animation: pulse 1s ease-out 0s alternate infinite none running;
         }
+
+        @keyframes pulse {
+            0% {
+                background-color: #92d400;
+            }
+
+            80% {
+                transform: scale(1);
+                background-color: #92d400;
+            }
+
+            100% {
+                transform: scale(1.1);
+                background-color: #ace12e;
+            }
+
+        }
+
 
         .position {
             font-weight: lighter;
@@ -86,19 +101,27 @@
         }
 
         .profile-actions {
-            margin: 5px 0 5px 5px;
+            margin: 5px 0 5px 0px;
+            padding: 0;
             list-style-type: none;
         }
 
         .profile-action {
-            padding: 3.5px 0 3.5px 0;
+            padding: 3.5px 0 3.5px 20px;
             font-size: 0.8em;
+            cursor: pointer;
         }
+
+        .profile-action:hover {
+            background-color: #F9F9F9;
+        }
+
         #debug {
-            background-color: antiquewhite;
+            /* background-color: antiquewhite; */
         }
+
         #debug:hover {
-            background-color: black;
+            background-color: #F9F9F9;
         }
 
         .done {
@@ -117,12 +140,12 @@
             </div>
         </div>
         <div class="time-and-date">
-            1:12 PM local time (change)
+            <span id="time"></span> local time
         </div>
         <ul class="profile-actions">
             <li class="profile-action">View preferences</li>
             <li class="profile-action">Open account settings</li>
-            <li id="debug" class="profile-action">Edit your profile</li>
+            <li class="profile-action">Edit your profile</li>
             <li class="profile-action">View your files</li>
             <li class="profile-action">Set yourself away</li>
         </ul>
@@ -133,14 +156,35 @@
         <li class="done">Border radius not clipping background image</li>
         <li class="done">Make text readable even on 'light' image<br>(add gradient as guard)</li>
         <li class="done">Border/Shadow</li>
-        <li>Buttons
+        <li class="done">Buttons
             <ul>
                 <li>Hover</li>
                 <li>Cursor</li>
             </ul>
         </li>
+        <li class="done">Experiment with pulsating status "led"</li>
+        <li class="done">Quick and dirty JS to update time</li>
     </ul>
 
+    <script>
+        function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+
+        function updateCurrentTime() {
+            document.getElementById('time').innerHTML = formatAMPM(new Date())
+        }
+
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000)
+    </script>
 </body>
 
 </html>
