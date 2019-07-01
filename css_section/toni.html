@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>It's a Snippet... it's fine</title>
+    <style>
+        /* * {
+            border: solid 1px red;
+        } */
+        .root {
+            /* position: relative; */
+        }
+
+        .parent {
+            position: relative;
+            height: 700px;
+            width: 400px;
+            background-color: blue;
+        }
+
+        .child {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            bottom: 25px;
+            background-color: yellow;
+        }
+
+        .child:active {
+            animation: grow 1s 0s normal 1 forwards running;
+            animation-timing-function: cubic-bezier(.29,1.47,.07,.93);
+        }
+
+
+        @keyframes grow {
+            0% {
+                background-color: red;
+                height: 200px;
+            }
+
+            100% {
+                height: 600px;
+                background-color: limegreen;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root">
+        <div class="parent">
+            PARENT
+            <div class="child" onclick="console.log('toni')">CHILD</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
