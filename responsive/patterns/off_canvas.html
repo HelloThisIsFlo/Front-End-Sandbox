@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Off Canvas</title>
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .blue {
+            background-image: linear-gradient(lightskyblue, blue);
+        }
+
+        .green {
+            background-image: linear-gradient(lime, green);
+        }
+
+        #hamburger {
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            margin: 15px;
+            cursor: pointer;
+        }
+
+        main {
+            position: relative;
+            width: 100%;
+            min-height: 100%;
+            overflow: auto;
+        }
+
+        nav {
+            color: white;
+            position: fixed;
+            z-index: 1;
+            height: 100%;
+            width: 200px;
+            max-width: 70%;
+            transform: translate(-300px, 0);
+            transition: transform 0.3s ease;
+        }
+
+        nav ul {
+            margin: 25px;
+        }
+
+        nav.open {
+            transform: translate(0, 0)
+        }
+
+        #debug {
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background-color: yellow;
+            width: 100px;
+            height: 2000px;
+        }
+
+        #debug>p {
+            margin: 15px;
+        }
+
+        @media screen and (min-width: 450px) {
+            nav {
+                width: 300px;
+            }
+        }
+
+        @media screen and (min-width: 601px) {
+            body {
+                display: flex;
+                flex-flow: row nowrap;
+            }
+
+            nav {
+                position: relative;
+                transform: translate(0, 0);
+            }
+
+            main {
+                width: auto;
+                flex-grow: 1;
+            }
+
+            #hamburger {
+                display: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="drawer" class="blue">
+        <ul>
+            <li>These</li>
+            <li>are</li>
+            <li>some</li>
+            <li>options</li>
+        </ul>
+    </nav>
+    <main id="main" class="green">
+        <div id="hamburger"></div>
+        <div id="debug">
+            <p>This block simulates long content (but it doesn't really work at the moment)</p>
+        </div>
+    </main>
+
+    <script>
+        const hamburger = document.getElementById('hamburger')
+        const drawer = document.getElementById('drawer')
+        const main = document.getElementById('main')
+
+        function logEvent(eventName, event) {
+            console.log(eventName + ': ' + JSON.stringify(event));
+        }
+        function listenAndLogEvent(element, eventName) {
+            element.addEventListener(eventName, function (e) {
+                logEvent(eventName, e)
+            })
+        }
+
+        hamburger.addEventListener('click', function (e) {
+            drawer.classList.toggle('open')
+            e.stopPropagation();
+        })
+        main.addEventListener('click', function (e) {
+            drawer.classList.remove('open')
+            e.stopPropagation()
+        })
+
+
+        listenAndLogEvent(main, 'touchstart')
+        listenAndLogEvent(main, 'touchend')
+        listenAndLogEvent(main, 'touchmove')
+        listenAndLogEvent(main, 'touchcancel')
+    </script>
+</body>
+
+</html>

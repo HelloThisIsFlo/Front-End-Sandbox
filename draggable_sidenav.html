@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Draggable Sidenav</title>
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            overscroll-behavior-y: contain; }
+
+        .blue {
+            background-image: linear-gradient(lightskyblue, blue);
+        }
+
+        .green {
+            background-image: linear-gradient(lime, green);
+        }
+
+        #hamburger {
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            margin: 15px;
+            cursor: pointer;
+        }
+
+        main {
+            position: relative;
+            width: 100%;
+            min-height: 100%;
+            overflow: auto;
+        }
+
+        nav {
+            color: white;
+            position: fixed;
+            z-index: 1;
+            height: 100%;
+            width: 300px;
+            transform: translate(-300px, 0);
+            transition: transform 0.3s ease;
+        }
+
+        nav:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -20px;
+            width: 20px;
+        }
+
+        nav ul {
+            margin: 25px;
+        }
+
+        nav.opened {
+            transform: translate(0, 0)
+        }
+
+        #debug>p {
+            margin: 15px;
+        }
+
+        /* @media screen and (min-width: 450px) {
+            nav {
+                width: 300px;
+                transform: translate(-300px, 0);
+            }
+        }
+
+        @media screen and (min-width: 601px) {
+            body {
+                display: flex;
+                flex-flow: row nowrap;
+            }
+
+            nav {
+                position: relative;
+                transform: translate(0, 0);
+            }
+
+            main {
+                width: auto;
+                flex-grow: 1;
+            }
+
+            #hamburger {
+                display: none;
+            }
+
+        } */
+    </style>
+</head>
+
+<body>
+    <nav id="drawer" class="blue">
+        <ul>
+            <li>These</li>
+            <li>are</li>
+            <li>some</li>
+            <li>options</li>
+        </ul>
+    </nav>
+    <main id="main" class="green">
+        <div id="hamburger"></div>
+    </main>
+
+    <script>
+        function SidenavDragger() {
+            this.sidenavElement = undefined;
+            this.sidenavWidth = undefined;
+
+            this.opened = false;
+
+            this.startTouchX = 0;
+            this.currentTouchX = 0;
+            this.currentTranslateX = 0;
+
+
+            this.registerSidenav = function (sidenavElement) {
+                this.sidenavElement = sidenavElement;
+                this.sidenavWidth = sidenavElement.offsetWidth;
+
+                sidenavElement.addEventListener('touchstart', e => startDrag(e))
+                sidenavElement.addEventListener('touchmove', e => drag(e))
+                sidenavElement.addEventListener('touchend', e => stopDrag(e))
+            }
+
+            const startDrag = startTouchEvent => {
+                this.opened = this.sidenavElement.classList.contains('opened')
+                this.startTouchX = extractClientX(startTouchEvent);
+                this.sidenavElement.style.transition = 'none';
+            }
+            const drag = moveTouchEvent => {
+                this.currentTouchX = extractClientX(moveTouchEvent);
+                differenceX = this.currentTouchX - this.startTouchX
+                moveBy(differenceX);
+            }
+            const stopDrag = endTouchEvent => {
+                /* TODO: 
+                - Set final position (either opened or closed)
+                  By adding (or not) 'opened' class
+                - Remove `translate3d` in element style
+                - Re-enable `transition` animation
+                */
+
+                this.opened = Math.abs(this.currentTranslateX) <= this.sidenavWidth / 2
+                if (this.opened) {
+                    this.sidenavElement.classList.add('opened');
+                } else {
+                    this.sidenavElement.classList.remove('opened');
+                }
+
+
+
+                this.sidenavElement.style.transform = '';
+                this.sidenavElement.style.transition = '';
+            }
+
+
+            const extractClientX = (touchEvent) => {
+                if (touchEvent.touches.length !== 1) {
+                    if (touchEvent.touches.length === 0) {
+                        throw 'No touches found - Can not extract cordinates'
+                    } else {
+                        throw 'Dragger does not handle multi-touch'
+                    }
+                }
+
+                const touch = touchEvent.touches[0]
+                return touch.clientX;
+            }
+
+            const moveBy = x => {
+                if (this.opened) {
+                    const moveBy = x < 0 ? x : 0;
+                    this.currentTranslateX = moveBy;
+                } else {
+                    const moveBy = x < this.sidenavWidth ? x : this.sidenavWidth;
+                    this.currentTranslateX = moveBy - this.sidenavWidth;
+                }
+
+                this.sidenavElement.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
+            }
+        }
+
+        const hamburger = document.getElementById('hamburger')
+        const drawer = document.getElementById('drawer')
+        const main = document.getElementById('main')
+
+        const dragger = new SidenavDragger()
+        dragger.registerSidenav(drawer)
+        hamburger.addEventListener('click', function (e) {
+            drawer.classList.toggle('opened')
+            e.stopPropagation();
+        })
+        main.addEventListener('click', function (e) {
+            drawer.classList.remove('opened')
+            e.stopPropagation()
+        })
+
+
+
+    </script>
+</body>
+
+</html>

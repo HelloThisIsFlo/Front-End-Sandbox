@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Layout Shifter</title>
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        #container2 {
+            flex-direction: row;
+        }
+
+        .box {
+            width: 100%;
+            min-height: 150px;
+        }
+
+        .dark-blue {
+            background-color: darkblue;
+        }
+
+        .light-blue {
+            background-color: lightskyblue;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+
+        @media screen and (min-width: 450px) {
+
+            #container2,
+            .dark-blue {
+                width: 50%;
+            }
+        }
+
+        @media screen and (min-width: 550px) {
+
+            .red,
+            .dark-blue {
+                width: 25%;
+            }
+
+            .red {
+                order: -1;
+            }
+
+            .dark-blue {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box dark-blue"></div>
+        <div class="container" id="container2">
+            <div class="box light-blue"></div>
+            <div class="box green"></div>
+        </div>
+        <div class="box red"></div>
+    </div>
+</body>
+
+</html>

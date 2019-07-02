@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    <title>Draggable Element</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            overscroll-behavior-y: contain;
+        }
+
+        #container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            /* overscroll-behavior-y: contain; */
+        }
+
+        #bubble {
+            height: 100px;
+            width: 100px;
+            background-color: lightgreen;
+            border-radius: 50%;
+            border: solid 4px limegreen;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="bubble"></div>
+    </div>
+
+    <script>
+        function Dragger() {
+            this.target = undefined;
+            this.startTouch = { x: 0, y: 0 };
+            this.currentTouch = { x: 0, y: 0 };
+
+            this.translateCurrent = { x: 0, y: 0 };
+            this.translateAtEndOfLastDrag = { x: 0, y: 0 };
+
+            const extractClientCoordinates = (touchEvent) => {
+                if (touchEvent.touches.length !== 1) {
+                    if (touchEvent.touches.length === 0) {
+                        throw 'No touches found - Can not extract cordinates'
+                    } else {
+                        throw 'Dragger does not handle multi-touch'
+                    }
+                }
+
+                const touch = touchEvent.touches[0]
+                return { x: touch.clientX, y: touch.clientY }
+            }
+
+            const moveBy = (x, y) => {
+                newX = this.translateAtEndOfLastDrag.x + x;
+                newY = this.translateAtEndOfLastDrag.y + y;
+                this.translateCurrent = { x: newX, y: newY };
+                this.target.style.transform = `translate3d(${this.translateCurrent.x}px, ${this.translateCurrent.y}px, 0)`;
+            }
+
+            this.startDrag = function (startTouchEvent) {
+                this.target = startTouchEvent.target;
+                this.startTouch = extractClientCoordinates(startTouchEvent);
+            }
+            this.drag = function (moveTouchEvent) {
+                this.currentTouch = extractClientCoordinates(moveTouchEvent);
+                differenceX = this.currentTouch.x - this.startTouch.x
+                differenceY = this.currentTouch.y - this.startTouch.y
+                moveBy(differenceX, differenceY)
+            }
+            this.stopDrag = function (endTouchEvent) {
+                this.translateAtEndOfLastDrag = this.translateCurrent;
+            }
+        }
+
+        function logAllTouchEvents(element) {
+            function logTouchEvent(event) {
+                console.log(event.type);
+                if (event.touches.length == 1) {
+                    singleTouch = event.touches[0];
+                    console.log(singleTouch)
+                }
+            }
+            container.addEventListener('touchstart', logTouchEvent)
+            container.addEventListener('touchend', logTouchEvent)
+            container.addEventListener('touchmove', logTouchEvent)
+            container.addEventListener('touchcancel', logTouchEvent)
+        }
+
+
+        const container = document.getElementById("container");
+        const bubble = document.getElementById("bubble");
+        // logAllTouchEvents(container);
+
+        // Only register 1 Dragger per element !! (TODO: add registration function and ensure that)
+        const dragger = new Dragger();
+        bubble.addEventListener('touchstart', e => dragger.startDrag(e))
+        bubble.addEventListener('touchmove', e => dragger.drag(e))
+        bubble.addEventListener('touchend', e => dragger.stopDrag(e))
+    </script>
+</body>
+
+</html>

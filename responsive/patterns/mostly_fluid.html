@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mostly Fluid</title>
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    <style>
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .wrapper>div {
+            min-height: 150px;
+        }
+
+        .top-1,
+        .top-2,
+        .bottom-1,
+        .bottom-2,
+        .bottom-3 {
+            width: 100%;
+        }
+
+        .top-1 {
+            background-color: darkblue;
+        }
+
+        .top-2 {
+            background-color: lightskyblue;
+        }
+
+        .bottom-1 {
+            background-color: green;
+        }
+
+        .bottom-2 {
+            background-color: red;
+        }
+
+        .bottom-3 {
+            background-color: orange;
+        }
+
+        @media screen and (min-width: 450px) {
+
+            .top-2,
+            .bottom-1 {
+                width: 50%;
+            }
+        }
+
+        @media screen and (min-width: 550px) {
+
+            .top-1,
+            .top-2 {
+                width: 50%;
+            }
+
+            .bottom-1,
+            .bottom-2,
+            .bottom-3 {
+                flex-grow: 1;
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="top-1"></div>
+        <div class="top-2"></div>
+        <div class="bottom-1"></div>
+        <div class="bottom-2"></div>
+        <div class="bottom-3"></div>
+    </div>
+</body>
+
+</html>

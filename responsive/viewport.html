@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Viewport Size</title>
+    <style>
+        .block {
+            position: relative;
+            height: 800px;
+            width: 1000px;
+            background-color: yellow;
+        }
+
+        .child {
+            position: absolute;
+            right: 0px;
+            height: 800px;
+            width: 5px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="viewport-size"></h1>
+    <div class="block">
+        <div class="child"></div>
+    </div>
+    <script>
+        function updateViewportSize() {
+            const height = document.documentElement.clientHeight
+            const width = document.documentElement.clientWidth
+
+            const fomattedDimensions = `${width} x ${height}`
+            document.getElementById("viewport-size").innerHTML = fomattedDimensions
+        }
+        setInterval(updateViewportSize, 100)
+    </script>
+</body>
+
+</html>

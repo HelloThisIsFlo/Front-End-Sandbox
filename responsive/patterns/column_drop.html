@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Column Drop</title>
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    <style>
+        div,
+        main {
+            /* transition: all 0.5s; */
+        }
+
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .wrapper>div {
+            height: 150px;
+        }
+
+        .left-column {
+            background-color: darkblue;
+            width: 100%;
+        }
+
+        .main {
+            background-color: lightskyblue;
+            width: 100%;
+        }
+
+        .right-column {
+            background-color: limegreen;
+            width: 100%;
+        }
+
+        @media screen and (min-width: 450px) {
+            .left-column {
+                width: 25%;
+            }
+
+            .main {
+                width: 75%;
+            }
+
+            .right-column {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width: 550px) {
+            .left-column {
+                width: 25%;
+            }
+
+            .main {
+                width: 50%;
+            }
+
+            .right-column {
+                width: 25%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="left-column"></div>
+        <div class="main"></div>
+        <div class="right-column"></div>
+    </div>
+</body>
+
+</html>

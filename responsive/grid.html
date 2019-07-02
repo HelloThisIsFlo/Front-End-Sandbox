@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grid</title>
+    <style>
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .box {
+            height: 200px;
+            width: 200px;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .red {
+            background-color: red;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .violet {
+            background-color: violet;
+        }
+        .green {
+            background-color: green;
+        }
+        .pink {
+            background-color: pink;
+        }
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 10px;
+            row-gap: 10px;
+        }
+
+        @media screen and (max-width: 350px) {
+            .wrapper {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- <img src="https://placekitten.com/200/300" alt="Picture of a cat">
+        <img src="https://placekitten.com/200/300" alt="Picture of a cat">
+        <img src="https://placekitten.com/200/300" alt="Picture of a cat">
+        <img src="https://placekitten.com/200/300" alt="Picture of a cat">
+        <img src="https://placekitten.com/200/300" alt="Picture of a cat">
+        <img src="https://placekitten.com/200/300" alt="Picture of a cat"> -->
+    </div>
+</body>
+
+</html>
