@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Float / Clear / Clearfix</title>
+    <style>
+      #paragraph-with-floating-block {
+        /* 
+          Uncomment following line for
+          ClearFix (basic version)
+          Only useful when the text in the paragraph is shorter
+          than the 'floating block'. But that shouldn't happen
+          because if that's the case, it's simply better to 
+          use a FlexBox.
+
+          */
+        /* overflow: auto; */
+        background-color: beige;
+      }
+      #floating-block {
+        width: 100px;
+        height: 50px;
+        border: solid 1px yellowgreen;
+        margin-right: 15px;
+        float: left;
+      }
+
+      #paragraph {
+        /* 
+          Uncomment following line to restore 
+          behavior just like if parent wasn't floating left
+          (besides margins)
+          */
+        /* clear: left; */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The Most important!</h1>
+    <p>
+      Clearfix was used to fix a bug when two floated elements are stacked next
+      to each other, see:
+      <a
+        href="https://css-tricks.com/clearfix-a-lesson-in-web-development-evolution/"
+        >ClearFix - CSS-Tricks</a
+      >
+    </p>
+    <p>
+      However, nowadays <code>ClearFix</code> is not necessary anymore.
+      <code>Flexbox</code> and the <code>CSS Grid</code> solve all the layout
+      problems <code>Clear</code> and <code>Float</code> were dealing with. And
+      when it comes to simply floating text around an image
+      <code>Clear</code> and <code>Float</code> work perfectly (I think).
+    </p>
+    <p>
+      <code>Clearfix</code> is only useful when the text in the paragraph is
+      shorter than the <em>floating block</em>. But that shouldn't happen
+      because if that's the case, it's simply better to use a
+      <code>Flexbox</code>.
+    </p>
+
+    <hr />
+    <h2>Clear / Float</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum
+      massa in metus pretium commodo. Aenean faucibus volutpat diam, quis
+      elementum urna tincidunt at. Sed id mattis velit.Phasellus ullamcorper
+      commodo scelerisque. Mauris vitae ultricies turpis. Nullam vehicula mauris
+      a tortor fermentum, non mattis est auctor.
+    </p>
+    <div id="paragraph-with-floating-block">
+      <div id="floating-block"></div>
+      <p id="paragraph">
+        Nulla dignissim nisi leo. Proin ultrices sapien et pellentesque dictum.
+        Donec dignissim pulvinar fringilla. Nullam non vulputate eros, vitae
+        fermentum purus. Proin sodales orci at sapien convallis, non facilisis
+        nunc convallis. Nulla dignissim nisi leo. Proin ultrices sapien et
+        pellentesque dictum. Donec dignissim pulvinar fringilla. Nullam non
+        vulputate eros, vitae fermentum purus. Proin sodales orci at sapien
+        convallis, non facilisis nunc convallis. Nulla dignissim nisi leo. Proin
+        ultrices sapien et pellentesque dictum. Donec dignissim pulvinar
+        fringilla. Nullam non vulputate eros, vitae fermentum purus. Proin
+        sodales orci at sapien convallis, non facilisis nunc convallis.
+      </p>
+    </div>
+  </body>
+</html>

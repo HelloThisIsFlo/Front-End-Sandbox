@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Responsive Tables</title>
+    <style>
+      body {
+        font-size: 2em;
+      }
+      table {
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: solid 1px grey;
+        padding: 0.5em;
+      }
+      thead tr {
+        background-color: lightgrey;
+        font-variant: small-caps;
+      }
+      tbody tr:nth-child(2n) {
+        background-color: whitesmoke;
+      }
+
+      .initials {
+        display: none;
+      }
+
+      .contained-table-container {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      @media screen and (max-width: 699px) {
+        .hidden-columns th:not(.name):not(.age),
+        .hidden-columns td:not(.name):not(.age) {
+          display: none;
+        }
+        .hidden-columns .full-name {
+          display: none;
+        }
+        .hidden-columns .initials {
+          display: inline;
+        }
+
+        .no-more-tables,
+        .no-more-tables thead,
+        .no-more-tables tbody,
+        .no-more-tables th,
+        .no-more-tables td,
+        .no-more-tables tr {
+          display: block;
+        }
+
+        .no-more-tables {
+          border: solid grey;
+          border-width: 0 0 1px 1px;
+        }
+        .no-more-tables td {
+          /* position: relative; */
+          padding-left: 50%;
+          border: solid grey;
+          border-width: 1px 1px 0 0;
+        }
+        .no-more-tables td::before {
+          position: absolute;
+          left: 1em;
+          content: attr(data-th);
+          font-weight: bold;
+          font-variant: small-caps;
+        }
+        .no-more-tables td:first-of-type {
+          font-weight: bold;
+        }
+        .no-more-tables thead tr {
+          /* 
+          Hide the Table head but make it visible 
+          for the screen readers (accessibility)
+          */
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+      }
+      @media screen and (min-width: 700px) {
+        .hidden-columns th:not(.name):not(.age),
+        .hidden-columns td:not(.name):not(.age) {
+          display: table-cell;
+        }
+
+        .hidden-columns .initials {
+          display: none;
+        }
+        .hidden-columns .full-name {
+          display: inline;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Responsive Tables</h1>
+    <hr />
+    <div>
+      <h2>Hidden Columns</h2>
+      <table class="hidden-columns">
+        <thead>
+          <tr>
+            <th class="name">
+              Name<br /><span class="initials">(Initials)</span>
+            </th>
+            <th class="age">Age</th>
+            <th>A</th>
+            <th>Bunch</th>
+            <th>Of</th>
+            <th>Other</th>
+            <th>Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">
+              <span class="full-name">Jull Smith</span
+              ><span class="initials">JS</span>
+            </td>
+            <td class="age">50</td>
+            <td>1234</td>
+            <td>ABC</td>
+            <td>Small</td>
+            <td>Green</td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td class="name">
+              <span class="full-name">Eve Jackson</span
+              ><span class="initials">EJ</span>
+            </td>
+            <td class="age">94</td>
+            <td>1234</td>
+            <td>ABC</td>
+            <td>Small</td>
+            <td>Green</td>
+            <td>True</td>
+          </tr>
+          <tr>
+            <td class="name">
+              <span class="full-name">Frank Michaels</span
+              ><span class="initials">FM</span>
+            </td>
+            <td class="age">44</td>
+            <td>1234</td>
+            <td>ABC</td>
+            <td>Small</td>
+            <td>Green</td>
+            <td>True</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr />
+    <div>
+      <h2>No more Tables</h2>
+      <table class="no-more-tables">
+        <thead>
+          <tr>
+            <th class="name">
+              Name<br /><span class="initials">(Initials)</span>
+            </th>
+            <th class="age">Age</th>
+            <th>A</th>
+            <th>Bunch</th>
+            <th>Of</th>
+            <th>Other</th>
+            <th>Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Name" class="name">
+              <span class="full-name">Jull Smith</span
+              ><span class="initials">JS</span>
+            </td>
+            <td data-th="Age" class="age">50</td>
+            <td data-th="A">1234</td>
+            <td data-th="Bunch">ABC</td>
+            <td data-th="Of">Small</td>
+            <td data-th="Other">Green</td>
+            <td data-th="Values">True</td>
+          </tr>
+          <tr>
+            <td data-th="Name" class="name">
+              <span class="full-name">Eve Jackson</span
+              ><span class="initials">EJ</span>
+            </td>
+            <td data-th="Age" class="age">94</td>
+            <td data-th="A">1234</td>
+            <td data-th="Bunch">ABC</td>
+            <td data-th="Of">Small</td>
+            <td data-th="Other">Green</td>
+            <td data-th="Values">True</td>
+          </tr>
+          <tr>
+            <td data-th="Name" class="name">
+              <span class="full-name">Frank Michaels</span
+              ><span class="initials">FM</span>
+            </td>
+            <td data-th="Age" class="age">44</td>
+            <td data-th="A">1234</td>
+            <td data-th="Bunch">ABC</td>
+            <td data-th="Of">Small</td>
+            <td data-th="Other">Green</td>
+            <td data-th="Values">True</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr />
+    <div>
+      <h2>Contained Table</h2>
+      <div class="contained-table-container">
+        <table class="contained-table">
+          <thead>
+            <tr>
+              <th class="name">
+                Name<br /><span class="initials">(Initials)</span>
+              </th>
+              <th class="age">Age</th>
+              <th>A</th>
+              <th>Bunch</th>
+              <th>Of</th>
+              <th>Other</th>
+              <th>Values</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">
+                <span class="full-name">Jull Smith</span
+                ><span class="initials">JS</span>
+              </td>
+              <td class="age">50</td>
+              <td>1234</td>
+              <td>ABC</td>
+              <td>Small</td>
+              <td>Green</td>
+              <td>True</td>
+            </tr>
+            <tr>
+              <td class="name">
+                <span class="full-name">Eve Jackson</span
+                ><span class="initials">EJ</span>
+              </td>
+              <td class="age">94</td>
+              <td>1234</td>
+              <td>ABC</td>
+              <td>Small</td>
+              <td>Green</td>
+              <td>True</td>
+            </tr>
+            <tr>
+              <td class="name">
+                <span class="full-name">Frank Michaels</span
+                ><span class="initials">FM</span>
+              </td>
+              <td class="age">44</td>
+              <td>1234</td>
+              <td>ABC</td>
+              <td>Small</td>
+              <td>Green</td>
+              <td>True</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr />
+  </body>
+</html>

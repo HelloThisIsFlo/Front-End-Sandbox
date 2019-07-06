@@ -1,0 +1,218 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-size: 16px;
+  line-height: 1.5em;
+  font-family: "Fira Code";
+  font-weight: 100;
+}
+
+.background-blurred-image {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("assets/background.jpg");
+  background-size: cover;
+  filter: blur(8px);
+}
+
+.background-card {
+  position: relative;
+  width: 1024px;
+  margin: 50px auto;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 20px 50px -25px;
+  overflow: hidden;
+}
+.background-card__overlay {
+  content: "";
+  background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
+  opacity: 0.4;
+  /* opacity: 0.9; */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+/*
+Header
+*/
+.header {
+  margin-top: 40px;
+  margin-bottom: 85px;
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+}
+.header__profile-picture {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0px grey;
+}
+.header__profile-picture__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+}
+.header__name-title {
+  padding-left: 100px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.header__name-title__name {
+  font-family: "Ostrich Sans Inline";
+  font-size: 7em;
+  line-height: 0.8em;
+  font-variant: small-caps;
+  width: 100px;
+}
+.header__name-title__title {
+  font-size: 1.9em;
+  font-weight: 500;
+  transform: translate(-4px, 0);
+  flex-grow: 1;
+  padding-top: 35px;
+}
+
+/*
+Featured Projects
+*/
+.featured {
+  margin-left: 75px;
+  margin-right: 75px;
+  min-height: 500px;
+}
+.featured__header {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size: 2em;
+  padding: 15px 10px 15px 10px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 4px -2px grey;
+}
+.featured__projects {
+  margin-top: 15px;
+  margin-left: 40px;
+  margin-right: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.project {
+  position: relative;
+  height: 325px;
+  width: 235px;
+  /* background-color: yellowgreen; */
+}
+.project:hover {
+    background-color: aqua;
+}
+.project__preview {
+  position: relative;
+  overflow: hidden;
+  height: 260px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1.5em;
+  color: white;
+}
+.project__preview__img {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  filter: blur(1px) brightness(65%);
+}
+.project__preview__img:hover {
+  filter: none;
+}
+.project__preview__description {
+  position: relative;
+  margin: auto;
+  padding-top: 55px;
+  padding-bottom: 40px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: 100;
+  text-align: center;
+  width: 215px;
+}
+.project__preview__visit {
+  position: relative;
+  width: 140px;
+  margin: auto;
+  padding: 10px 0 10px 0;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.project__title {
+  position: absolute;
+  color: #3a1e07;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 160px;
+  text-align: center;
+  margin: auto;
+  font-size: 1.4em;
+}
+
+/*
+Footer
+*/
+.footer {
+  margin-top: 40px;
+  margin-left: 45px;
+  margin-bottom: 40px;
+}
+.footer__blog {
+}
+.footer__blog__link {
+}
+.footer__twitter {
+}
+.footer__twitter__link {
+}
+
+/*
+TODO List
+*/
+.todo-list {
+  font-family: sans-serif;
+  background-color: whitesmoke;
+  padding: 25px;
+  padding-right: 25px;
+  border-radius: 10px;
+  margin: 15px;
+  margin-top: 100px;
+  max-width: 350px;
+  min-height: 500px;
+  border: whitesmoke;
+  box-shadow: 2.5px 2.5px 15px -5px grey;
+}
+.todo-list__title {
+  font-variant: small-caps;
+}
+.todo-list__done {
+  color: green;
+  text-decoration: line-through;
+}

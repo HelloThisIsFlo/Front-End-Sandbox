@@ -1,106 +1,147 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Sandbox</title>
     <style>
-        p {
-            color: red;
-        }
+      p {
+        color: red;
+      }
+      p::selection {
+        background-color: violet;
+      }
 
-        .lorem {
-            color: blue;
-            font-family: cursive;
-        }
+      .lorem {
+        color: blue;
+        font-family: cursive;
+      }
 
-        h1 {
-            text-transform: uppercase;
-        }
+      h1 {
+        text-transform: uppercase;
+      }
 
-        #sandboxes {
-            background-color: burlywood;
-        }
+      #sandboxes {
+        background-color: burlywood;
+      }
+      #project1 {
+          background-color: yellowgreen;
+      }
 
-        .right {
-            text-align: right;
-        }
+      .right {
+        text-align: right;
+      }
 
-        .languages {
-            font-style: italic;
-            text-decoration: underline;
-            font-weight: bold;
-        }
+      .languages {
+        font-style: italic;
+        text-decoration: underline;
+        font-weight: bold;
+      }
     </style>
-</head>
+  </head>
 
+  <body>
+    <section id="sandboxes">
+      <h1>Sandboxes</h1>
+      <ul>
+        <li><a href="redwood/index.html">Redwood</a></li>
+        <li><a href="mockup_to_website/index.html">Mockup to Website</a></li>
+        <li>
+          CSS:
+          <ul>
+            <li><a href="css_section/units.html">Units</a></li>
+            <li><a href="css_section/image.html">Image</a></li>
+            <li><a href="css_section/text.html">Text</a></li>
+            <li>
+              <a href="css_section/slack_from_scratch.html"
+                >Slack From Scratch</a
+              >
+            </li>
+            <li><a href="css_section/header.html">Header</a></li>
+            <li>
+              <a href="css_section/experimentations.html">Experimentations</a>
+            </li>
+            <li><a href="css_section/toni.html">Toni</a></li>
+            <li><a href="css_section/padding.html">Padding</a></li>
+            <li><a href="css_section/float_clear.html">Float / Clear</a></li>
+            <li>
+              <a href="css_section/before_after.html">::before / ::after</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Responsive:
+          <ul>
+            <li><a href="responsive/viewport.html">Viewport</a></li>
+            <li><a href="responsive/media_queries.html">Media Queries</a></li>
+            <li><a href="responsive/grid.html">Grid</a></li>
+            <li><a href="responsive/flexbox.html">Flexbox</a></li>
+            <li><a href="responsive/tables.html">Tables</a></li>
+            <li>
+              Patterns:
+              <ul>
+                <li>
+                  <a href="responsive/patterns/column_drop.html">Column Drop</a>
+                </li>
+                <li>
+                  <a href="responsive/patterns/mostly_fluid.html"
+                    >Mostly Fluid</a
+                  >
+                </li>
+                <li>
+                  <a href="responsive/patterns/layout_shifter.html"
+                    >Layout Shifter</a
+                  >
+                </li>
+                <li>
+                  <a href="responsive/patterns/off_canvas.html">Off Canvas</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="draggable_element.html">Draggable Element</a></li>
+        <li><a href="draggable_sidenav.html">Draggable Sidenav</a></li>
+      </ul>
+    </section>
+    <hr />
 
-<body>
-    <div id="sandboxes">
-        <h1>Sandboxes</h1>
-        <ul>
-            <li><a href="redwood/index.html">Redwood</a></li>
-            <li><a href="mockup_to_website/index.html">Mockup to Website</a></li>
-            <li>CSS:
-                <ul>
-                    <li><a href="css_section/units.html">Units</a></li>
-                    <li><a href="css_section/image.html">Image</a></li>
-                    <li><a href="css_section/text.html">Text</a></li>
-                    <li><a href="css_section/slack_from_scratch.html">Slack From Scratch</a></li>
-                    <li><a href="css_section/header.html">Header</a></li>
-                    <li><a href="css_section/experimentations.html">Experimentations</a></li>
-                    <li><a href="css_section/toni.html">Toni</a></li>
-                    <li><a href="css_section/padding.html">Padding</a></li>
-                </ul>
-            </li>
-            <li>Responsive:
-                <ul>
-                    <li><a href="responsive/viewport.html">Viewport</a></li>
-                    <li><a href="responsive/media_queries.html">Media Queries</a></li>
-                    <li><a href="responsive/grid.html">Grid</a></li>
-                    <li><a href="responsive/flexbox.html">Flexbox</a></li>
-                    <li>Patterns:
-                        <ul>
-                            <li><a href="responsive/patterns/column_drop.html">Column Drop</a></li>
-                            <li><a href="responsive/patterns/mostly_fluid.html">Mostly Fluid</a></li>
-                            <li><a href="responsive/patterns/layout_shifter.html">Layout Shifter</a></li>
-                            <li><a href="responsive/patterns/off_canvas.html">Off Canvas</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="draggable_element.html">Draggable Element</a></li>
-            <li><a href="draggable_sidenav.html">Draggable Sidenav</a></li>
-        </ul>
-    </div>
-    <h1>yo This is a <em>test</em>, it is an <em><em>important</em> test</em> </h1>
+    <section id="project1">
+      <h1>Project 1</h1>
+      <ul>
+        <li><a href="portfolio/index.html">Portfolio</a></li>
+      </ul>
+      <hr />
+    </section>
+    <h1>
+      This is a <em>test</em>, it is an <em><em>important</em> test</em>
+    </h1>
     <button>Click!</button>
 
     <a href="example/hey.html">Hey</a>
     <a href="example/nested/hello.html">Hello</a>
-</body>
-
-<p>Here are the three web languages:
+    <p>Here are the three web languages:</p>
     <ul class="languages">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
     </ul>
-</p>
 
-<h1>Title</h1>
-<div>
-    <p class="lorem"> Mauris venenatis rutrum dui, quis semper sapien faucibus eget. Nullam dapibus orci nunc, in
-        scelerisque urna
-        placerat id. Donec hendrerit tincidunt nulla, at porta neque dapibus nec. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Morbi in dolor at felis accumsan facilisis. </p>
-    <p>
-        Some random paragraph that's not lorem
-    </p>
-    <p class="lorem right">
-        Mauris venenatis rutrum dui, quis semper sapien faucibus eget. Nullam dapibus orci nunc, in scelerisque urna
-        placerat id. Donec hendrerit tincidunt nulla, at porta neque dapibus nec. Lorem ipsum dolor sit amet,
+    <h1>Title</h1>
+    <div>
+      <p class="lorem">
+        Mauris venenatis rutrum dui, quis semper sapien faucibus eget. Nullam
+        dapibus orci nunc, in scelerisque urna placerat id. Donec hendrerit
+        tincidunt nulla, at porta neque dapibus nec. Lorem ipsum dolor sit amet,
         consectetur adipiscing elit. Morbi in dolor at felis accumsan facilisis.
-    </p>
-</div>
-
+      </p>
+      <p>
+        Some random paragraph that's not lorem
+      </p>
+      <p class="lorem right">
+        Mauris venenatis rutrum dui, quis semper sapien faucibus eget. Nullam
+        dapibus orci nunc, in scelerisque urna placerat id. Donec hendrerit
+        tincidunt nulla, at porta neque dapibus nec. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Morbi in dolor at felis accumsan facilisis.
+      </p>
+    </div>
+  </body>
 </html>
