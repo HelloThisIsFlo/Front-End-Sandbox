@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
     <meta
       property="og:image"
       content="http://sandbox.floriankempenich.com:1234/portfolio/assets/social_media_preview.png"
@@ -20,92 +21,96 @@
     <title>Portfolio</title>
   </head>
   <body>
-      <header class="header">
-        <div class="header__profile-picture">
-          <img
-            src="assets/profile_picture.jpeg"
-            alt="Profile Picture"
-            class="header__profile-picture__img"
-          />
-        </div>
-        <div class="header__name-title">
-          <div class="header__name-title__name">Florian Kempenich</div>
-          <div class="header__name-title__title">Full Stack Developer</div>
-        </div>
-      </header>
-      <main class="featured">
-        <div class="featured__header">
-          Featured
-        </div>
-        <div class="featured__projects">
-          <div class="project">
-            <div class="project__preview">
-              <img
-                src="assets/professionalbeginner.png"
-                alt="Professional Beginner preview image"
-                class="project__preview__img"
-              />
-              <div class="project__preview__description">
-                <p>
-                  My personal blog, my take on software
-                </p>
-              </div>
-              <div class="project__preview__visit">Visit</div>
+    <header class="header">
+      <div class="header__profile-picture">
+        <img
+          src="assets/profile_picture.jpeg"
+          alt="Profile Picture"
+          class="header__profile-picture__img"
+        />
+      </div>
+      <div class="header__name-title">
+        <h1 class="header__name-title__name">Florian Kempenich</h1>
+        <h2 class="header__name-title__title">Full Stack Developer</h2>
+      </div>
+    </header>
+    <main class="featured">
+      <h3 class="featured__header">
+        Featured
+      </h3>
+      <div class="featured__projects">
+        <div class="project">
+          <div class="project__preview">
+            <img
+              src="assets/professionalbeginner.png"
+              alt="Professional Beginner preview image"
+              class="project__preview__img"
+            />
+            <div class="project__preview__description">
+              <p>
+                My personal blog, my take on software
+              </p>
             </div>
-            <div class="project__title">Professional Beginner</div>
+            <div class="project__preview__visit">Visit</div>
           </div>
-          <div class="project">
-            <div class="project__preview">
-              <img
-                src="assets/appdaemontest.png"
-                alt="Appdaemon preview image"
-                class="project__preview__img"
-              />
-              <div class="project__preview__description">
-                <p>
-                  Test Drive your Home-Automation
-                </p>
-              </div>
-              <div class="project__preview__visit">Visit</div>
+          <h4 class="project__title">Professional Beginner</h4>
+        </div>
+        <div class="project">
+          <div class="project__preview">
+            <img
+              src="assets/appdaemontest.png"
+              alt="Appdaemon preview image"
+              class="project__preview__img"
+            />
+            <div class="project__preview__description">
+              <p>
+                Test Drive your Home-Automation
+              </p>
             </div>
-            <div class="project__title">Appdaemon Test Framework</div>
+            <a
+              href="https://floriankempenich.github.io/Appdaemon-Test-Framework"
+              class="project__preview__visit"
+              >Visit</a
+            >
           </div>
-          <div class="project">
-            <div class="project__preview">
-              <img
-                src="assets/secret.jpg"
-                alt="Secret project preview image"
-                class="project__preview__img"
-              />
-              <div class="project__preview__description">
-                <p>
-                  Coming Soon
-                </p>
-              </div>
-              <div class="project__preview__visit">Visit</div>
+          <h4 class="project__title">Appdaemon Test Framework</h4>
+        </div>
+        <div class="project">
+          <div class="project__preview">
+            <img
+              src="assets/secret.jpg"
+              alt="Secret project preview image"
+              class="project__preview__img"
+            />
+            <div class="project__preview__description">
+              <p>
+                Coming Soon
+              </p>
             </div>
-            <div class="project__title">Secret Project</div>
+            <div class="project__preview__visit">Visit</div>
           </div>
+          <h4 class="project__title">Secret Project</h4>
         </div>
-      </main>
-      <footer class="footer">
-        <div class="footer__blog">
-          Read
-          <a href="https://professionalbeginner.com" class="footer__blog__link"
-            >my Blog</a
-          >
-        </div>
-        <div class="footer__twitter">
-          Follow me
-          <a
-            href="https://twitter.com/ThisIsFlorianK"
-            class="footer__twitter__link"
-            >on Twitter</a
-          >
-        </div>
-      </footer>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__blog">
+        Read
+        <a href="https://professionalbeginner.com" class="footer__blog__link"
+          >my Blog</a
+        >
+      </div>
+      <div class="footer__twitter">
+        Follow me
+        <a
+          href="https://twitter.com/ThisIsFlorianK"
+          class="footer__twitter__link"
+          >on Twitter</a
+        >
+      </div>
+    </footer>
     <section class="todo-list">
-      <h1 class="todo-list__title">Todo List</h1>
+      <h2 class="todo-list__title">Todo List</h2>
       <ul>
         <li class="todo-list__done">Read description of the project</li>
         <li class="todo-list__done">
@@ -127,10 +132,12 @@
             <li class="todo-list__done">Align "Visit" buttons</li>
             <li class="todo-list__done">Fix hover bug</li>
             <li class="todo-list__done">Make Responsive</li>
-            <li>Fix background on iPad</li>
-            <li>Add links to different projects on "Visit"</li>
-            <li>Optimize images</li>
-            <li>
+            <li class="todo-list__deprecated">Fix background on iPad</li>
+            <li class="todo-list__done">
+              Add links to different projects on "Visit"
+            </li>
+            <li class="todo-list__done">Optimize images</li>
+            <li class="todo-list__done">
               Ensure semantic HTML used everywhere
               <ul>
                 <li>Title using <code>h1</code></li>

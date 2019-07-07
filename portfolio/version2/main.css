@@ -2,6 +2,18 @@ html,
 body {
   margin: 0;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: unset;
+}
+a {
+  color: unset;
+  text-decoration: unset;
+}
 body {
   font-size: 16px;
   line-height: 1.5em;
@@ -83,6 +95,7 @@ Featured Projects
 .featured__projects {
   margin: 15px 95px 0 95px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -133,6 +146,7 @@ Featured Projects
   transform: translate(0, 10px);
 }
 .project__preview__visit {
+  display: block;
   position: relative;
   width: 140px;
   margin: auto;
@@ -171,17 +185,8 @@ Footer
 .footer a {
   color: #141414;
   font-weight: 400;
+  text-decoration: underline;
 }
-/* 
-.footer__blog {
-}
-.footer__blog__link {
-}
-.footer__twitter {
-}
-.footer__twitter__link {
-}
-*/
 
 @media screen and (max-width: 1000px) {
   html,
@@ -306,9 +311,6 @@ Footer
   .featured__header {
     margin-top: 20px;
   }
-  .featured__projects {
-    flex-wrap: wrap;
-  }
   .project {
     margin: 0 15px 30px 15px;
   }
@@ -325,7 +327,7 @@ Footer
 TODO List
 */
 .todo-list {
-  display: none;
+  /* display: none; */
   font-family: sans-serif;
   background-color: whitesmoke;
   padding: 25px;
@@ -333,7 +335,7 @@ TODO List
   border-radius: 10px;
   margin: 15px;
   margin-top: 100px;
-  max-width: 350px;
+  max-width: 450px;
   min-height: 500px;
   border: whitesmoke;
   box-shadow: 2.5px 2.5px 15px -5px grey;
@@ -343,5 +345,14 @@ TODO List
 }
 .todo-list__done {
   color: green;
+  text-decoration: line-through;
+}
+.todo-list__deprecated {
+  color: grey;
+  text-decoration: line-through;
+}
+.todo-list__deprecated::after {
+  content: " (DEPRECATED)";
+  color: grey;
   text-decoration: line-through;
 }
