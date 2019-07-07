@@ -10,6 +10,9 @@ h4 {
   margin: 0;
   font-weight: unset;
 }
+p {
+  margin: 0;
+}
 a {
   color: unset;
   text-decoration: unset;
@@ -255,7 +258,7 @@ Footer
   .header__profile-picture {
     position: relative;
     width: 100%;
-    height: 240px;
+    height: 300px;
     order: 1;
     margin: 0;
     margin-bottom: 50px;
@@ -323,11 +326,17 @@ Footer
   }
 }
 
+@media screen and (max-width: 500px) {
+  .header__profile-picture {
+    height: 240px;
+  }
+}
+
 /*
 TODO List
 */
 .todo-list {
-  /* display: none; */
+  display: none;
   font-family: sans-serif;
   background-color: whitesmoke;
   padding: 25px;
