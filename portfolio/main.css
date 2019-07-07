@@ -1,13 +1,15 @@
 html,
 body {
-  height: 100%;
   margin: 0;
 }
 body {
+  /* font-size: 16px; */
   font-size: 16px;
   line-height: 1.5em;
   font-family: "Fira Code";
   font-weight: 100;
+  color: #141414;
+  height: 100%;
 }
 
 .background-blurred-image {
@@ -15,8 +17,8 @@ body {
   z-index: -1;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  bottom: 0;
+  right: 0;
   background-image: url("assets/background.jpg");
   background-size: cover;
   filter: blur(8px);
@@ -24,7 +26,8 @@ body {
 
 .background-card {
   position: relative;
-  width: 1024px;
+  width: 95%;
+  max-width: 975px;
   margin: 50px auto;
   background-color: white;
   border-radius: 4px;
@@ -55,8 +58,8 @@ Header
 }
 .header__profile-picture {
   position: relative;
-  width: 200px;
-  height: 250px;
+  width: 220px;
+  height: 240px;
   overflow: hidden;
   border-radius: 5px;
   box-shadow: 0 2px 4px 0px grey;
@@ -73,10 +76,13 @@ Header
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  text-shadow: 5px 5px 10px grey;
 }
 .header__name-title__name {
   font-family: "Ostrich Sans Inline";
+  text-shadow: 5px 5px 10px grey;
   font-size: 7em;
+  letter-spacing: 0.2em;
   line-height: 0.8em;
   font-variant: small-caps;
   width: 100px;
@@ -93,34 +99,33 @@ Header
 Featured Projects
 */
 .featured {
-  margin-left: 75px;
-  margin-right: 75px;
-  min-height: 500px;
+  /* margin-left: 75px; */
 }
 .featured__header {
+  position: relative;
+  background-color: transparent;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 45px;
+  margin-left: 50px;
   font-size: 2em;
   padding: 15px 10px 15px 10px;
   border-radius: 2px;
-  box-shadow: 2px 2px 4px -2px grey;
+  box-shadow: 2px 2px 5px -2px grey;
 }
 .featured__projects {
   margin-top: 15px;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 10%;
+  margin-right: 10%;
   display: flex;
   justify-content: space-between;
 }
 
 .project {
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: 325px;
-  width: 235px;
-  /* background-color: yellowgreen; */
-}
-.project:hover {
-    background-color: aqua;
+  width: 220px;
 }
 .project__preview {
   position: relative;
@@ -130,6 +135,7 @@ Featured Projects
   border-radius: 5px;
   font-size: 1.5em;
   color: white;
+  box-shadow: 0 5px 10px -5px grey;
 }
 .project__preview__img {
   position: absolute;
@@ -137,22 +143,31 @@ Featured Projects
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: transform 0.3s;
   height: 100%;
   filter: blur(1px) brightness(65%);
 }
-.project__preview__img:hover {
-  filter: none;
+.project__preview__img__hover {
+  transform: translate(-50%, -50%) scale(1.3);
 }
 .project__preview__description {
   position: relative;
   margin: auto;
-  padding-top: 55px;
-  padding-bottom: 40px;
+  height: 160px;
+  width: 170px;
+  /* padding-top: 55px; */
+  /* padding-bottom: 40px; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
   font-family: Georgia, "Times New Roman", Times, serif;
   font-style: italic;
-  font-weight: 100;
+  font-size: 0.8em;
   text-align: center;
-  width: 215px;
+}
+.project__preview__description > p {
+  transform: translate(0, 10px);
 }
 .project__preview__visit {
   position: relative;
@@ -163,26 +178,37 @@ Featured Projects
   background-color: rgba(0, 0, 0, 0.1);
   border: solid 2px rgba(0, 0, 0, 0.1);
   text-align: center;
+  cursor: pointer;
+}
+.project__preview__visit:hover {
+  border: solid 2px rgba(255, 255, 255, 0.5);
+  transition: all 0.1s;
 }
 .project__title {
-  position: absolute;
   color: #3a1e07;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
   width: 160px;
   text-align: center;
   margin: auto;
-  font-size: 1.4em;
+  font-size: 1.1em;
 }
 
 /*
 Footer
 */
 .footer {
+  position: relative;
   margin-top: 40px;
   margin-left: 45px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  font-size: 1.3em;
+}
+.footer * {
+  /* border: solid 1px red; */
+  padding: 5px 0;
+}
+.footer a {
+  color: #141414;
+  font-weight: 400;
 }
 .footer__blog {
 }
@@ -197,6 +223,7 @@ Footer
 TODO List
 */
 .todo-list {
+  display: none;
   font-family: sans-serif;
   background-color: whitesmoke;
   padding: 25px;
