@@ -3,13 +3,11 @@ body {
   margin: 0;
 }
 body {
-  /* font-size: 16px; */
   font-size: 16px;
   line-height: 1.5em;
   font-family: "Fira Code";
   font-weight: 100;
   color: #141414;
-  height: 100%;
 }
 
 .background-blurred-image {
@@ -26,19 +24,17 @@ body {
 
 .background-card {
   position: relative;
-  width: 95%;
-  max-width: 975px;
+  width: 975px;
   margin: 50px auto;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 20px 50px -25px;
-  overflow: hidden;
+  overflow: auto;
 }
 .background-card__overlay {
   content: "";
   background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
-  opacity: 0.4;
-  /* opacity: 0.9; */
+  opacity: 0.3;
   top: 0;
   left: 0;
   bottom: 0;
@@ -62,6 +58,7 @@ Header
   height: 240px;
   overflow: hidden;
   border-radius: 5px;
+  flex-shrink: 0;
   box-shadow: 0 2px 4px 0px grey;
 }
 .header__profile-picture__img {
@@ -72,8 +69,7 @@ Header
   height: 100%;
 }
 .header__name-title {
-  padding-left: 100px;
-  flex-grow: 1;
+  margin-left: 100px;
   display: flex;
   flex-direction: column;
   text-shadow: 5px 5px 10px grey;
@@ -85,7 +81,6 @@ Header
   letter-spacing: 0.2em;
   line-height: 0.8em;
   font-variant: small-caps;
-  width: 100px;
 }
 .header__name-title__title {
   font-size: 1.9em;
@@ -98,13 +93,11 @@ Header
 /*
 Featured Projects
 */
-.featured {
-  /* margin-left: 75px; */
-}
 .featured__header {
   position: relative;
   background-color: transparent;
-  display: inline-block;
+  text-align: center;
+  width: 180px;
   margin-bottom: 45px;
   margin-left: 50px;
   font-size: 2em;
@@ -113,9 +106,7 @@ Featured Projects
   box-shadow: 2px 2px 5px -2px grey;
 }
 .featured__projects {
-  margin-top: 15px;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin: 15px 95px 0 95px;
   display: flex;
   justify-content: space-between;
 }
@@ -133,7 +124,7 @@ Featured Projects
   height: 260px;
   width: 100%;
   border-radius: 5px;
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: white;
   box-shadow: 0 5px 10px -5px grey;
 }
@@ -155,15 +146,12 @@ Featured Projects
   margin: auto;
   height: 160px;
   width: 170px;
-  /* padding-top: 55px; */
-  /* padding-bottom: 40px; */
   display: flex;
   justify-content: center;
   flex-direction: column;
-
   font-family: Georgia, "Times New Roman", Times, serif;
   font-style: italic;
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-align: center;
 }
 .project__preview__description > p {
@@ -210,6 +198,7 @@ Footer
   color: #141414;
   font-weight: 400;
 }
+/* 
 .footer__blog {
 }
 .footer__blog__link {
@@ -217,6 +206,162 @@ Footer
 .footer__twitter {
 }
 .footer__twitter__link {
+}
+*/
+
+@media screen and (max-width: 1000px) {
+  html,
+  body {
+    height: 100%;
+  }
+  .background-blurred-image {
+    display: none;
+  }
+  .background-card {
+    position: static;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px 0 0 0;
+    margin: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .background-card__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  /*
+  Header
+  */
+  .header {
+    margin-left: 50px;
+    margin-right: 50px;
+    justify-content: space-around;
+  }
+  .header__profile-picture {
+    margin-right: 50px;
+  }
+  .header__name-title {
+    /* margin-left: 35px; */
+    margin-left: 50px;
+    margin-left: 0%;
+    /* width: 380px; */
+    width: 430px;
+  }
+  .header__name-title__name {
+    letter-spacing: 0.15em;
+  }
+
+  /*
+  Featured Projects
+  */
+  .featured__header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+  }
+  .featured__projects {
+    margin: 15px 30px 0 30px;
+    justify-content: space-around;
+  }
+
+  /*
+  Footer
+  */
+  .footer {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .project {
+    width: 210px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /*
+  Header
+  */
+  .header {
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .header__profile-picture {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    order: 1;
+    margin: 0;
+    margin-bottom: 50px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .header__profile-picture::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      whitesmoke,
+      transparent 20%,
+      transparent 80%,
+      whitesmoke
+    );
+  }
+  .header__profile-picture__img {
+    height: auto;
+    width: 100%;
+  }
+  .header__name-title {
+    width: 100%;
+    padding: 0 20px 0 20px;
+    text-align: center;
+    align-items: center;
+  }
+  .header__name-title__name {
+    font-size: 4em;
+    line-height: 1.1em;
+  }
+  .header__name-title__title {
+    font-size: 1.5em;
+    transform: none;
+    width: 100%;
+    max-width: 200px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    line-height: 1.6em;
+    padding: 0;
+  }
+
+  /*
+  Featured Projects
+  */
+  .featured__header {
+    margin-top: 20px;
+  }
+  .featured__projects {
+    flex-wrap: wrap;
+  }
+  .project {
+    margin: 0 15px 30px 15px;
+  }
+
+  /*
+  Footer
+  */
+  .footer {
+    margin-top: 40px;
+  }
 }
 
 /*
