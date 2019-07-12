@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Viewport Units</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html, body {
+          height: 100%;
+      }
+      .half-width {
+        overflow: hidden;
+        height: 100vh;
+      }
+      img {
+        display: block;
+        /* max-width: 100vw;
+        max-height: 100vh; */
+
+        width: 100vmax;
+        height: 100vmax;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="half-width">
+      <img src="https://placekitten.com/500/600" alt="Kitten" />
+    </div>
+  </body>
+</html>
