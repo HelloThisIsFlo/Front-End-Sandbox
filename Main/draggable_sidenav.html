@@ -161,8 +161,8 @@
 
 
 
-                this.sidenavElement.style.transform = '';
                 this.sidenavElement.style.transition = '';
+                setTransform('');
             }
 
 
@@ -188,7 +188,14 @@
                     this.currentTranslateX = moveBy - this.sidenavWidth;
                 }
 
-                this.sidenavElement.style.transform = `translate3d(${this.currentTranslateX}px, 0, 0)`;
+                setTransform(`translate3d(${this.currentTranslateX}px, 0, 0)`);
+            }
+
+            const setTransform = value => {
+                const doSetTransform = _timestamp => {
+                    this.sidenavElement.style.transform = value;
+                }
+                window.requestAnimationFrame(doSetTransform)
             }
         }
 
