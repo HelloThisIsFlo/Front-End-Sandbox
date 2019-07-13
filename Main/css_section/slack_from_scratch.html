@@ -184,6 +184,78 @@
 
         updateCurrentTime();
         setInterval(updateCurrentTime, 1000)
+
+        function RequestAnimationFrameTranslater(element) {
+            this.element = element;
+            this.current = 0;
+            this.stop = false;
+
+
+            const moveForward1Px = () => {
+                this.current++;
+                this.element.style.transform = `translate3d(${this.current}px, 0, 0)`
+            }
+
+            this.start = function() {
+                const run = () => {
+                    if (!this.stop) {
+                        moveForward1Px();
+                        requestAnimationFrame(run);
+                    }
+                }
+
+                this.stop = false
+                run()
+            }
+
+            this.reset = function() {
+                this.stop = true;
+                this.current = 0;
+                this.element.style.transform = '';
+            }
+
+        }
+
+        function SetTimeoutTranslater(element) {
+            this.element = element;
+            this.current = 0;
+            this.stop = false;
+
+
+            const moveForward1Px = () => {
+                this.current++;
+                this.element.style.transform = `translate3d(${this.current}px, 0, 0)`
+            }
+
+            this.start = function() {
+                const run = () => {
+                    if (!this.stop) {
+                        moveForward1Px();
+                        setTimeout(run, 0)
+                    }
+                }
+
+                this.stop = false
+                run()
+            }
+
+            this.reset = function() {
+                this.stop = true;
+                this.current = 0;
+                this.element.style.transform = '';
+            }
+
+
+        }
+
+
+        const slack = document.querySelector('.slack-card');
+        const setTimeoutTranslater = new SetTimeoutTranslater(slack);
+        const requestAnimationFrameTranslater = new RequestAnimationFrameTranslater(slack);
+
+
+
+
     </script>
 </body>
 
