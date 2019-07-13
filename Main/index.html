@@ -38,6 +38,12 @@
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        /*
+        * Better than on 'load'/onload' most of the times, but not better than
+        * just putting the script at the end of the body. If not necessary, it 
+        * just adds complexity.
+        * Useful when DOM-related code needs to run AS-SOOON-AS-POSSIBLE.
+        */
         const projects = document.getElementById("project1");
         const button = document.querySelector("button");
         button.addEventListener("click", () => {
