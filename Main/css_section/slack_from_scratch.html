@@ -1,262 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap"
+      rel="stylesheet"
+    />
     <title>Slack From Scratch</title>
     <style>
-        body {
-            /* background-color: lightgrey; */
-            font-family: 'Open Sans', sans-serif;
+      body {
+        /* background-color: lightgrey; */
+        font-family: "Open Sans", sans-serif;
+      }
+
+      * {
+        /* border: 1px red solid; */
+      }
+
+      hr {
+        margin-top: 50px;
+      }
+
+      .slack-card {
+        margin: 30px;
+        border-radius: 6px;
+        overflow: hidden;
+        width: 300px;
+        background: white;
+        box-shadow: 2.5px 2.5px 15px -5px grey;
+        /* height: 2000px; */
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .slack-card > * {
+        padding-left: 15px;
+      }
+
+      .header-with-img {
+        width: auto;
+        height: 210px;
+        background-image: linear-gradient(to top, #00000060, #00000000 40%),
+          url("https://www.gravatar.com/avatar/e4546dde398d256327e5ebead604f268?s=500");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+      }
+
+      .name-and-position {
+        position: absolute;
+        bottom: 10px;
+        color: white;
+      }
+
+      .name {
+        position: static;
+        font-weight: bold;
+      }
+
+      .status {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-left: 7px;
+        border-radius: 50%;
+        animation: pulse 1s ease-out 0s alternate infinite none running;
+      }
+
+      @keyframes pulse {
+        0% {
+          background-color: #92d400;
         }
 
-        * {
-            /* border: 1px red solid; */
+        80% {
+          transform: scale(1);
+          background-color: #92d400;
         }
 
-        hr {
-            margin-top: 50px;
+        100% {
+          transform: scale(1.1);
+          background-color: #ace12e;
         }
+      }
 
-        .slack-card {
-            margin: 30px;
-            border-radius: 6px;
-            overflow: hidden;
-            width: 300px;
-            background: white;
-            box-shadow: 2.5px 2.5px 15px -5px grey;
-            /* height: 2000px; */
-            font-family: 'Open Sans', sans-serif;
-        }
+      .position {
+        font-weight: lighter;
+        font-size: 0.8em;
+      }
 
-        .slack-card>* {
-            padding-left: 15px;
-        }
+      .time-and-date {
+        height: 30px;
+        line-height: 30px;
+        font-size: 0.7em;
+        font-weight: lighter;
+        border-top: solid 1px #f4f4f7;
+        border-bottom: solid 1px #f4f4f7;
+      }
 
-        .header-with-img {
-            width: auto;
-            height: 210px;
-            background-image: linear-gradient(to top, #00000060, #00000000 40%), url("https://www.gravatar.com/avatar/e4546dde398d256327e5ebead604f268?s=500");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center center;
-            position: relative;
-        }
+      .profile-actions {
+        margin: 5px 0 5px 0px;
+        padding: 0;
+        list-style-type: none;
+      }
 
-        .name-and-position {
-            position: absolute;
-            bottom: 10px;
-            color: white;
-        }
+      .profile-action {
+        padding: 3.5px 0 3.5px 20px;
+        font-size: 0.8em;
+        cursor: pointer;
+      }
 
-        .name {
-            position: static;
-            font-weight: bold;
-        }
+      .profile-action:hover {
+        background-color: #f9f9f9;
+      }
 
-        .status {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin-left: 7px;
-            border-radius: 50%;
-            animation: pulse 1s ease-out 0s alternate infinite none running;
-        }
+      #debug {
+        /* background-color: antiquewhite; */
+      }
 
-        @keyframes pulse {
-            0% {
-                background-color: #92d400;
-            }
+      #debug:hover {
+        background-color: #f9f9f9;
+      }
 
-            80% {
-                transform: scale(1);
-                background-color: #92d400;
-            }
-
-            100% {
-                transform: scale(1.1);
-                background-color: #ace12e;
-            }
-
-        }
-
-
-        .position {
-            font-weight: lighter;
-            font-size: 0.8em;
-        }
-
-        .time-and-date {
-            height: 30px;
-            line-height: 30px;
-            font-size: 0.7em;
-            font-weight: lighter;
-            border-top: solid 1px #F4F4F7;
-            border-bottom: solid 1px #F4F4F7;
-        }
-
-        .profile-actions {
-            margin: 5px 0 5px 0px;
-            padding: 0;
-            list-style-type: none;
-        }
-
-        .profile-action {
-            padding: 3.5px 0 3.5px 20px;
-            font-size: 0.8em;
-            cursor: pointer;
-        }
-
-        .profile-action:hover {
-            background-color: #F9F9F9;
-        }
-
-        #debug {
-            /* background-color: antiquewhite; */
-        }
-
-        #debug:hover {
-            background-color: #F9F9F9;
-        }
-
-        .done {
-            color: green;
-            text-decoration: line-through;
-        }
+      .done {
+        color: green;
+        text-decoration: line-through;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="slack-card">
-        <div class="header-with-img">
-            <div class="name-and-position">
-                <div class="name">Florian Kempenich<span class="status"></span></div>
-                <div class="position">Professional CSS Beginner</div>
-            </div>
+      <div class="header-with-img">
+        <div class="name-and-position">
+          <div class="name">Florian Kempenich<span class="status"></span></div>
+          <div class="position">Professional CSS Beginner</div>
         </div>
-        <div class="time-and-date">
-            <span id="time"></span> local time
-        </div>
-        <ul class="profile-actions">
-            <li class="profile-action">View preferences</li>
-            <li class="profile-action">Open account settings</li>
-            <li class="profile-action">Edit your profile</li>
-            <li class="profile-action">View your files</li>
-            <li class="profile-action">Set yourself away</li>
-        </ul>
+      </div>
+      <div class="time-and-date"><span id="time"></span> local time</div>
+      <ul class="profile-actions">
+        <li class="profile-action">View preferences</li>
+        <li class="profile-action">Open account settings</li>
+        <li class="profile-action">Edit your profile</li>
+        <li class="profile-action">View your files</li>
+        <li class="profile-action">Set yourself away</li>
+      </ul>
     </div>
-    <hr>
+    <hr />
     <h3>Working on</h3>
     <ul>
-        <li class="done">Border radius not clipping background image</li>
-        <li class="done">Make text readable even on 'light' image<br>(add gradient as guard)</li>
-        <li class="done">Border/Shadow</li>
-        <li class="done">Buttons
-            <ul>
-                <li>Hover</li>
-                <li>Cursor</li>
-            </ul>
-        </li>
-        <li class="done">Experiment with pulsating status "led"</li>
-        <li class="done">Quick and dirty JS to update time</li>
+      <li class="done">Border radius not clipping background image</li>
+      <li class="done">
+        Make text readable even on 'light' image<br />(add gradient as guard)
+      </li>
+      <li class="done">Border/Shadow</li>
+      <li class="done">
+        Buttons
+        <ul>
+          <li>Hover</li>
+          <li>Cursor</li>
+        </ul>
+      </li>
+      <li class="done">Experiment with pulsating status "led"</li>
+      <li class="done">Quick and dirty JS to update time</li>
     </ul>
 
     <script>
-        function formatAMPM(date) {
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            var strTime = hours + ':' + minutes + ' ' + ampm;
-            return strTime;
-        }
+      function formatAMPM(date) {
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        var strTime = hours + ":" + minutes + " " + ampm;
+        return strTime;
+      }
 
-        function updateCurrentTime() {
-            document.getElementById('time').innerHTML = formatAMPM(new Date())
-        }
+      function updateCurrentTime() {
+        document.getElementById("time").innerHTML = formatAMPM(new Date());
+      }
 
-        updateCurrentTime();
-        setInterval(updateCurrentTime, 1000)
+      updateCurrentTime();
+      setInterval(updateCurrentTime, 1000);
 
-        function RequestAnimationFrameTranslater(element) {
-            this.element = element;
-            this.current = 0;
-            this.stop = false;
+      function RequestAnimationFrameTranslater(element) {
+        this.element = element;
+        this.current = 0;
+        this.stop = false;
 
+        const moveForward1Px = () => {
+          this.current++;
+          this.element.style.transform = `translate3d(${this.current}px, 0, 0)`;
+        };
 
-            const moveForward1Px = () => {
-                this.current++;
-                this.element.style.transform = `translate3d(${this.current}px, 0, 0)`
+        this.start = function() {
+          const run = () => {
+            if (!this.stop) {
+              moveForward1Px();
+              requestAnimationFrame(run);
             }
+          };
 
-            this.start = function() {
-                const run = () => {
-                    if (!this.stop) {
-                        moveForward1Px();
-                        requestAnimationFrame(run);
-                    }
-                }
+          this.stop = false;
+          run();
+        };
 
-                this.stop = false
-                run()
+        this.reset = function() {
+          this.stop = true;
+          this.current = 0;
+          this.element.style.transform = "";
+        };
+      }
+
+      function SetTimeoutTranslater(element) {
+        this.element = element;
+        this.current = 0;
+        this.stop = false;
+
+        const moveForward1Px = () => {
+          this.current++;
+          this.element.style.transform = `translate3d(${this.current}px, 0, 0)`;
+        };
+
+        this.start = function() {
+          const run = () => {
+            if (!this.stop) {
+              moveForward1Px();
+              setTimeout(run, 0);
             }
+          };
 
-            this.reset = function() {
-                this.stop = true;
-                this.current = 0;
-                this.element.style.transform = '';
-            }
+          this.stop = false;
+          run();
+        };
 
-        }
+        this.reset = function() {
+          this.stop = true;
+          this.current = 0;
+          this.element.style.transform = "";
+        };
+      }
 
-        function SetTimeoutTranslater(element) {
-            this.element = element;
-            this.current = 0;
-            this.stop = false;
-
-
-            const moveForward1Px = () => {
-                this.current++;
-                this.element.style.transform = `translate3d(${this.current}px, 0, 0)`
-            }
-
-            this.start = function() {
-                const run = () => {
-                    if (!this.stop) {
-                        moveForward1Px();
-                        setTimeout(run, 0)
-                    }
-                }
-
-                this.stop = false
-                run()
-            }
-
-            this.reset = function() {
-                this.stop = true;
-                this.current = 0;
-                this.element.style.transform = '';
-            }
-
-
-        }
-
-
-        const slack = document.querySelector('.slack-card');
-        const setTimeoutTranslater = new SetTimeoutTranslater(slack);
-        const requestAnimationFrameTranslater = new RequestAnimationFrameTranslater(slack);
-
-
-
-
+      const slack = document.querySelector(".slack-card");
+      const setTimeoutTranslater = new SetTimeoutTranslater(slack);
+      const requestAnimationFrameTranslater = new RequestAnimationFrameTranslater(
+        slack
+      );
     </script>
-</body>
-
+  </body>
 </html>
