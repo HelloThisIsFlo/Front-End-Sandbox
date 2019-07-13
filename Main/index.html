@@ -36,6 +36,44 @@
         font-weight: bold;
       }
     </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const projects = document.getElementById("project1");
+        const button = document.querySelector("button");
+        button.addEventListener("click", () => {
+          window.requestAnimationFrame(() => {
+            projects.style.transform = "translateX(500px)";
+            projects.style.transition = "";
+            window.requestAnimationFrame(() => {
+              projects.style.transform = "translateX(300px)";
+              projects.style.transition = "transform 1s ease-in-out";
+            });
+          });
+        });
+
+        // const paragraphs = document.createElement('div')
+        // function paragraphClickListener(event) {
+        //   if (event.target.nodeName === 'P') {
+        //     let position = Number(event.target.getAttribute('data-position'))
+        //     console.log(`paragraph #${position} was clicked`);
+        //     console.log(event.eventPhase)
+        //   }
+        // }
+
+        // paragraphs.addEventListener('click', paragraphClickListener);
+
+        // for (let i = 0; i < 200;) {
+        //   const paragraph = document.createElement('p');
+        //   paragraph.textContent = `This is paragraph #${++i}`
+        //   paragraph.setAttribute('data-position', i)
+        //   paragraphs.appendChild(paragraph)
+        // }
+
+
+        // document.body.appendChild(paragraphs)
+
+      })
+    </script>
   </head>
 
   <body>
@@ -157,41 +195,5 @@
         consectetur adipiscing elit. Morbi in dolor at felis accumsan facilisis.
       </p>
     </div>
-    <script>
-      const projects = document.getElementById("project1");
-      const button = document.querySelector("button");
-      button.addEventListener("click", () => {
-        window.requestAnimationFrame(() => {
-          projects.style.transform = "translateX(500px)";
-          projects.style.transition = "";
-          window.requestAnimationFrame(() => {
-            projects.style.transform = "translateX(300px)";
-            projects.style.transition = "transform 1s ease-in-out";
-          });
-        });
-      });
-
-      // const paragraphs = document.createElement('div')
-      // function paragraphClickListener(event) {
-      //   if (event.target.nodeName === 'P') {
-      //     let position = Number(event.target.getAttribute('data-position'))
-      //     console.log(`paragraph #${position} was clicked`);
-      //     console.log(event.eventPhase)
-      //   }
-      // }
-
-      // paragraphs.addEventListener('click', paragraphClickListener);
-
-      // for (let i = 0; i < 200;) {
-      //   const paragraph = document.createElement('p');
-      //   paragraph.textContent = `This is paragraph #${++i}`
-      //   paragraph.setAttribute('data-position', i)
-      //   paragraphs.appendChild(paragraph)
-      // }
-
-
-      // document.body.appendChild(paragraphs)
-
-    </script>
   </body>
 </html>
