@@ -19,7 +19,6 @@ function paragraphClickListener(event) {
 function buildContainingDiv() {
   const paragraphsDiv = document.createElement("div");
   paragraphsDiv.addEventListener("click", paragraphClickListener);
-  paragraphsDiv.classList.add("paragraphs");
   return paragraphsDiv;
 }
 function buildParagraphTemplate() {
@@ -29,20 +28,22 @@ function buildParagraphFromTemplate(template, index) {
   const paragraph = template.cloneNode();
   paragraph.textContent = `This is paragraph #${index}`;
   paragraph.setAttribute("data-position", index);
+  paragraph.classList.add("paragraph");
   return paragraph;
 }
 
 const params = {
-  paragraphsPerGroup: 5000,
+  paragraphsPerGroup: 30,
   triesForEachVersion: 100,
   only: [
-    "containingDivAndCloneTemplateAndAppendInTheLoop",
-    "noContainingDivAndCloneTemplateAndAppendInTheLoop"
+    "containingDiv_cloneTemplate_appendInTheLoop",
+    "noContainingDiv_cloneTemplate_appendInTheLoop",
+    "documentFragmentInsteadOfContainingDiv_cloneTemplate_appendInTheLoop"
   ]
 };
 
 const versions = {
-  containingDivAndCreatingNewElementEachTime() {
+  containingDiv_createNewElementEachTime() {
     const allParagraphsDiv = buildContainingDiv();
 
     const paragraphs = new Array();
@@ -50,6 +51,7 @@ const versions = {
       const paragraph = document.createElement("p");
       paragraph.textContent = `This is paragraph #${++i}`;
       paragraph.setAttribute("data-position", i);
+      paragraph.classList.add("paragraph");
       paragraphs.push(paragraph);
     }
 
@@ -57,7 +59,7 @@ const versions = {
     document.body.append(allParagraphsDiv);
   },
 
-  containingDivAndCloneTemplateAndAppendAllAtOnce() {
+  containingDiv_cloneTemplate_appendAllAtOnce() {
     const allParagraphsDiv = buildContainingDiv();
     const template = buildParagraphTemplate();
     const paragraphs = [];
@@ -70,7 +72,7 @@ const versions = {
     document.body.append(allParagraphsDiv);
   },
 
-  containingDivAndCloneTemplateAndAppendInTheLoop() {
+  containingDiv_cloneTemplate_appendInTheLoop() {
     const allParagraphsDiv = buildContainingDiv();
     const template = buildParagraphTemplate();
     for (let i = 0; i < params.paragraphsPerGroup; ) {
@@ -79,23 +81,31 @@ const versions = {
     document.body.append(allParagraphsDiv);
   },
 
-  noContainingDivAndCloneTemplateAndAppendInTheLoop() {
+  noContainingDiv_cloneTemplate_appendInTheLoop() {
     const template = buildParagraphTemplate();
     for (let i = 0; i < params.paragraphsPerGroup; ) {
       document.body.appendChild(buildParagraphFromTemplate(template, ++i));
     }
+  },
+  documentFragmentInsteadOfContainingDiv_cloneTemplate_appendInTheLoop() {
+    const allParagraphsFragment = document.createDocumentFragment();
+    const template = buildParagraphTemplate();
+    for (let i = 0; i < params.paragraphsPerGroup; ) {
+      allParagraphsFragment.appendChild(buildParagraphFromTemplate(template, ++i));
+    }
+    document.body.appendChild(allParagraphsFragment);
   }
 };
 
 function clean() {
-  const paragraphDivs = [];
-  for (p of document.getElementsByClassName("paragraphs")) {
-    paragraphDivs.push(p);
+  const paragraphs = [];
+  for (p of document.getElementsByClassName("paragraph")) {
+    paragraphs.push(p);
   }
-  for (paragraphDiv of paragraphDivs) {
+  for (paragraphDiv of paragraphs) {
     paragraphDiv.remove();
   }
-  console.log(`Cleaned ${paragraphDivs.length} groups of paragraphs`);
+  console.log(`Cleaned ${paragraphs.length} paragraphs`);
 }
 
 function testAllVersions() {
