@@ -33,12 +33,16 @@ function buildParagraphFromTemplate(template, index) {
 }
 
 const params = {
-  paragraphsPerGroup: 100,
-  triesForEachVersion: 1000
+  paragraphsPerGroup: 5000,
+  triesForEachVersion: 100,
+  only: [
+    "containingDivAndCloneTemplateAndAppendInTheLoop",
+    "noContainingDivAndCloneTemplateAndAppendInTheLoop"
+  ]
 };
 
-const versionsToTest = {
-  creatingNewElementEachTime() {
+const versions = {
+  containingDivAndCreatingNewElementEachTime() {
     const allParagraphsDiv = buildContainingDiv();
 
     const paragraphs = new Array();
@@ -53,7 +57,7 @@ const versionsToTest = {
     document.body.append(allParagraphsDiv);
   },
 
-  cloneTemplateAndAppendAllAtOnce() {
+  containingDivAndCloneTemplateAndAppendAllAtOnce() {
     const allParagraphsDiv = buildContainingDiv();
     const template = buildParagraphTemplate();
     const paragraphs = [];
@@ -66,13 +70,20 @@ const versionsToTest = {
     document.body.append(allParagraphsDiv);
   },
 
-  cloneTemplateAndAppendInTheLoop() {
+  containingDivAndCloneTemplateAndAppendInTheLoop() {
     const allParagraphsDiv = buildContainingDiv();
     const template = buildParagraphTemplate();
     for (let i = 0; i < params.paragraphsPerGroup; ) {
       allParagraphsDiv.appendChild(buildParagraphFromTemplate(template, ++i));
     }
     document.body.append(allParagraphsDiv);
+  },
+
+  noContainingDivAndCloneTemplateAndAppendInTheLoop() {
+    const template = buildParagraphTemplate();
+    for (let i = 0; i < params.paragraphsPerGroup; ) {
+      document.body.appendChild(buildParagraphFromTemplate(template, ++i));
+    }
   }
 };
 
@@ -88,18 +99,20 @@ function clean() {
 }
 
 function testAllVersions() {
-  for (version in versionsToTest) {
-    let durationSum = 0;
-    for (let i = 0; i < params.triesForEachVersion; i++) {
-      const start = performance.now();
-      versionsToTest[version]();
-      const end = performance.now();
+  for (version in versions) {
+    if (params.only && params.only.includes(version)) {
+      let durationSum = 0;
+      for (let i = 0; i < params.triesForEachVersion; i++) {
+        const start = performance.now();
+        versions[version]();
+        const end = performance.now();
 
-      durationSum += end - start;
+        durationSum += end - start;
+      }
+
+      const avgDuration = durationSum / params.triesForEachVersion;
+      console.log(`${version}\n-> ${avgDuration}`);
     }
-
-    const avgDuration = durationSum / params.triesForEachVersion;
-    console.log(`${version}\n-> ${avgDuration}`);
   }
 
   clean();
