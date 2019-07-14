@@ -33,7 +33,7 @@ function buildParagraphFromTemplate(template, index) {
 }
 
 const params = {
-  paragraphsPerGroup: 30,
+  paragraphsPerGroup: 1000,
   triesForEachVersion: 100,
   only: [
     "containingDiv_cloneTemplate_appendInTheLoop",
@@ -91,7 +91,9 @@ const versions = {
     const allParagraphsFragment = document.createDocumentFragment();
     const template = buildParagraphTemplate();
     for (let i = 0; i < params.paragraphsPerGroup; ) {
-      allParagraphsFragment.appendChild(buildParagraphFromTemplate(template, ++i));
+      allParagraphsFragment.appendChild(
+        buildParagraphFromTemplate(template, ++i)
+      );
     }
     document.body.appendChild(allParagraphsFragment);
   }
@@ -128,4 +130,38 @@ function testAllVersions() {
   clean();
 }
 
-testAllVersions();
+const n = 30000;
+function buildHugeAmountOfParagraphs() {
+  const template = buildParagraphTemplate();
+  for (let i = 0; i < n; ++i) {
+    document.body.appendChild(buildParagraphFromTemplate(template, i));
+  }
+}
+function buildHugeAmountOfParagraphs_inAsyncBlocks() {
+  function doBuild() {
+    const template = buildParagraphTemplate();
+    for (let i = 0; i < chunk; ++i) {
+      built += 1;
+      document.body.appendChild(buildParagraphFromTemplate(template, built));
+      if (built >= n) {
+        return;
+      }
+    }
+    setTimeout(doBuild, 0);
+  }
+
+  let chunk = 10;
+  let built = 0;
+  setTimeout(doBuild, 0);
+}
+
+
+const nanodegreeSection = document.getElementById("individual-nanodegree-programs");
+nanodegreeSection.addEventListener("mouseenter", () => {
+  nanodegreeSection.style.backgroundColor = "red";
+});
+nanodegreeSection.addEventListener("mouseleave", () => {
+  nanodegreeSection.style.backgroundColor = "";
+});
+
+// testAllVersions();
